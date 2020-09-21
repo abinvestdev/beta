@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -38,6 +39,13 @@
     left: 0;
     right: 0;
     transform: skewY(-3deg);
+  }
+  .swal2-styled.swal2-confirm{
+      font-size: 10px!important;
+  }
+  .swal2-title {
+      font-size: 1.275em!important;
+  }
 
     </style>
 </head>
@@ -50,14 +58,31 @@
 			<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item">
-			    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter2">Sign Up</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModalCenter">Log In</a>
-			  </li>
-			</ul>
+      @if(!Auth::user())
+  			<ul class="navbar-nav ml-auto">
+  			  <li class="nav-item">
+  			    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter2">Sign Up</a>
+  			  </li>
+  			  <li class="nav-item">
+  			    <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModalCenter">Log In</a>
+  			  </li>
+  			</ul>
+      @else
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                     {{ __('Logout') }}
+
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                     @csrf
+                 </form>
+                </a>
+          </li>
+          
+        </ul>
+
+
+      @endif
 			</div>
 		</div>
   		</nav>
@@ -72,7 +97,7 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        <form method="POST" action="{{ route('login') }}" class="user">
+			        <form method="POST" action="{{ route('login') }}" class="user" id="UserLogin">
                   @csrf
                        <div class="form-group">
                     <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
@@ -111,7 +136,7 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        <form method="POST" action="{{ route('login') }}" class="user">
+			        <form method="POST" action="{{ url('api/join') }}" class="user" id="registerUser">
                   @csrf
                   <div class="form-group">
                     <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Full Name">
@@ -145,5 +170,109 @@
             @yield('content')
         </main>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
+<script>
+    
+$(document).ready(function (e) {
+ 
+  $(".register-link").on('click', (function (e) {
+    $('.register-area').show();
+  }));
+    $("#registerUser").on('submit', (function (e) {
+      e.preventDefault();
+
+    checkData  = new FormData(this);
+    thisAction = $(this).attr("action");
+
+     $.ajax({
+       
+        url: thisAction,
+        type: "POST",
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+
+        },
+
+        success: function (data) {
+          
+          obj = JSON.parse(data);
+          if(obj['status'] == 'failed'){
+            Swal.fire({
+            type: 'error',
+            title: obj.mesg,   
+          });
+
+          }
+          if(obj['status'] == 'success'){
+            $('input').val('');
+            Swal.fire(
+            obj.mesg,
+            'You may now login',
+            'success'
+          )
+
+          }
+
+        },
+        error: function (e) {
+
+        }
+      });
+
+  }));
+});
+$(document).ready(function (e) {
+ 
+
+    $("#UserLogin").on('submit', (function (e) {
+      e.preventDefault();
+
+    checkData  = new FormData(this);
+    thisAction = $(this).attr("action");
+
+     $.ajax({
+       
+        url: thisAction,
+        type: "POST",
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+
+        },
+
+        success: function (data) {
+          
+          obj = JSON.parse(data);
+          if(obj['status'] == 'failed'){
+            Swal.fire({
+            type: 'error',
+            title: obj.mesg,   
+          });
+
+          }
+          if(obj['status'] == 'success'){
+            $('input').val('');
+            Swal.fire(
+            obj.mesg,
+            'You may now login',
+            'success'
+          )
+
+          }
+
+        },
+        error: function (e) {
+
+        }
+      });
+
+  }));
+});
+  </script>
 </html>
