@@ -260,10 +260,10 @@ $(document).ready(function (e) {
             $('input').val('');
             Swal.fire(
             obj.mesg,
-            'You may now login',
+            'Successfully Logged in',
             'success'
           )
-
+setTimeout(location.reload.bind(location), 2000);
           }
 
         },
