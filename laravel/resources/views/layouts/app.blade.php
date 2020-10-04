@@ -30,22 +30,57 @@
     border: 2px solid rgb(47, 69, 83)!important;}
     .custom-control-label::before {background: rgb(47, 69, 83)!important; box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.12) 0px 1px 2px 0px;
     border: 2px solid rgb(47, 69, 83)!important;}
-    .navbar-dark::after {
-    content: "";
-    background: #1b1b1b;
-    position: absolute;
-    bottom: 60px;
-    top: 60px;
-    left: 0;
-    right: 0;
-    transform: skewY(-3deg);
-  }
+    
   .swal2-styled.swal2-confirm{
       font-size: 10px!important;
   }
   .swal2-title {
       font-size: 1.275em!important;
   }
+  .card {
+    background:none!important;
+  }
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #4e9ff0;
+    background:none!important;
+    border:none!important;
+        padding: 0.5rem 1rem;
+}
+.nav-tabs .nav-link.active {
+    color: #85c2ff;
+    background-color: none!important;
+  border:none!important;
+    padding: 0.5rem 1rem!important;
+    padding-top: 7%;
+
+}
+.nav-tabs .nav-link{
+  border:none!important;
+}
+.nav-tabs .nav-link:hover{
+  border:none!important;
+  }
+.nav-tabs {
+    border-bottom: 1px solid #44505d;
+}
+.pt-4, .py-4 {
+    padding-top: 4.5rem !important;
+}
+.card-title {
+    margin-bottom: -0.25rem;
+}
+.btn-bet{
+  width:48.9%;
+}
+.table thead th {
+    color: #fff!important;
+     vertical-align: bottom;
+    border-bottom: 2px solid #48494b;
+}
+.table tr > td{
+    color: #8c9186!important;
+    }
+
 
     </style>
 </head>
@@ -78,6 +113,13 @@
                  </form>
                 </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"  data-toggle="modal" data-target="#wallet"><i class="fa fa-users"></i> Wallet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('game.bitcoin')}}" ><i class="fa fa-users"></i> Game</a>
+          </li>
+
           
         </ul>
 
@@ -87,84 +129,12 @@
 		</div>
   		</nav>
   		<!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			  <div class="modal-dialog modal-dialog-centered" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        <form method="POST" action="{{ route('login') }}" class="user" id="UserLogin">
-                  @csrf
-                       <div class="form-group">
-                    <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                  </div>
-                  <div class="form-group" style="position:relative;">
-                    <div class="custom-control custom-checkbox small">
-                      <input type="checkbox" class="custom-control-input" id="customCheck">
-                      <label class="custom-control-label" for="customCheck" style="padding-top: 1%;">Remember Me</label>
-                    </div>
-<!--                     <a href="#" class="register-link">Not a member yet?</a>
- -->                  </div>
-                  <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Login
-                  </button>
-              <!--     <hr>
-                  <a href="index.html" class="btn btn-google btn-user btn-block">
-                    <i class="fab fa-google fa-fw"></i> Login with Google
-                  </a>
-                  <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                  </a> -->
-                </form>			      </div>
-			    </div>
-			  </div>
-			</div>
-			<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			  <div class="modal-dialog modal-dialog-centered" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle">Register</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        <form method="POST" action="{{ url('api/join') }}" class="user" id="registerUser">
-                  @csrf
-                  <div class="form-group">
-                    <input type="text" name="name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Full Name">
-                  </div>
-                   <div class="form-group">
-                    <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Repeat Password">
-                  </div>
-               
-                  <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Register 
-                  </button>
-              <!--     <hr>
-                  <a href="index.html" class="btn btn-google btn-user btn-block">
-                    <i class="fab fa-google fa-fw"></i> Login with Google
-                  </a>
-                  <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                  </a> -->
-                </form>			      </div>
-			    </div>
-			  </div>
-			</div>
+       @if(!Auth::user())
+  			@include('layouts.login')
+        @include('layouts.register')
+      @else
+       @include('layouts.wallet')
+      @endif
 
         <main class="py-4">
             @yield('content')
@@ -264,6 +234,142 @@ $(document).ready(function (e) {
             'success'
           )
 setTimeout(location.reload.bind(location), 2000);
+          }
+
+        },
+        error: function (e) {
+
+        }
+      });
+
+  }));
+
+
+
+    $("#user-deposit").on('submit', (function (e) {
+      e.preventDefault();
+
+    checkData  = new FormData(this);
+    thisAction = $(this).attr("action");
+
+     $.ajax({
+       
+        url: thisAction,
+        type: "POST",
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+
+        },
+
+        success: function (data) {
+          
+          obj = JSON.parse(data);
+          if(obj['status'] == 'failed'){
+            Swal.fire({
+            type: 'error',
+            title: obj.mesg,   
+          });
+
+          }
+          if(obj['status'] == 'success'){
+            $('input').val('');
+            Swal.fire(
+            obj.mesg,
+            'Successfully sent',
+            'success'
+          )
+          setTimeout(location.reload.bind(location), 2000);
+          }
+
+        },
+        error: function (e) {
+
+        }
+      });
+
+  }));
+    $("#user-deposit").on('submit', (function (e) {
+      e.preventDefault();
+
+    checkData  = new FormData(this);
+    thisAction = $(this).attr("action");
+
+     $.ajax({
+       
+        url: thisAction,
+        type: "POST",
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+
+        },
+
+        success: function (data) {
+          
+          obj = JSON.parse(data);
+          if(obj['status'] == 'failed'){
+            Swal.fire({
+            type: 'error',
+            title: obj.mesg,   
+          });
+
+          }
+          if(obj['status'] == 'success'){
+            $('input').val('');
+            Swal.fire(
+            obj.mesg,
+            'Successfully sent',
+            'success'
+          )
+          }
+
+        },
+        error: function (e) {
+
+        }
+      });
+
+  }));
+     $("#user-withdraw").on('submit', (function (e) {
+      e.preventDefault();
+
+    checkData  = new FormData(this);
+    thisAction = $(this).attr("action");
+
+     $.ajax({
+       
+        url: thisAction,
+        type: "POST",
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+
+        },
+
+        success: function (data) {
+          
+          obj = JSON.parse(data);
+          if(obj['status'] == 'failed'){
+            Swal.fire({
+            type: 'error',
+            title: obj.mesg,   
+          });
+
+          }
+          if(obj['status'] == 'success'){
+            $('input').val('');
+            Swal.fire(
+            obj.mesg,
+            'Successfully sent',
+            'success'
+          )
           }
 
         },

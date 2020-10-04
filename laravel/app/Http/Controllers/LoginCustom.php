@@ -12,7 +12,7 @@ class LoginCustom extends Controller
      public function login(Request $request) {
 
 
-     	    if(!Auth::attempt(['email'=>$request->email,'password'=>$request->password],'user_status','Active')) {
+     	    if(!Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_status'=>'Active'])) {
      	    	$data['status'] = 'failed';
      	    	$data['mesg'] = 'Login failed';
      	    }else{
