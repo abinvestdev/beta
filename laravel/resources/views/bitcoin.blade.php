@@ -4,10 +4,10 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3>FX GAME</h3>
+            <h3>BITMEX</h3>
           </div>
           <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -22,17 +22,17 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
           <div class="col-6">
-            <div class="card">
+            <div class="card" style="min-height:500px;">
               <div class="card-header">
                 <h5 class="card-title">Betting Cart             <p id="btcValueOld" style="float:right;"></p></h5>
 
               
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0" style="height: 300px;overflow-x: hidden;">
               <button class="btn btn-primary btn-sm btn-bet" onClick="startTimer('60',0)">Start</button>
               <button class="btn btn-danger btn-sm btn-bet">Stop</button>
                       <div class="row">
@@ -78,13 +78,15 @@
               </div>
               
             </div>
-            <div class="col-5">
-            <p id="btcValue" style="display:none;"></p>
 
-            </div>
 
             <!-- /.card -->
           </div>
+              <div class="col-6">
+            <p id="btcValue" style="display:none;"></p>
+            <div style="padding-top:200px;height:560px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px; width: 100%;"><div style="height:540px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=chart&theme=light&coin_id=859&pref_coin_id=1505" width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div><div style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #FFFFFF; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div>
+
+            </div>
         </div>
         </div>
         </section>
