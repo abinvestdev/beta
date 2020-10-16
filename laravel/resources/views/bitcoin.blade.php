@@ -1,5 +1,14 @@
 @extends('layouts.app')
+<style>
 
+  .minus{
+    color:red!important;
+  }
+  .add{
+    color:green;
+  }
+
+</style>
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,7 +16,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3>BITMEX</h3>
+            <h3>BINANCE</h3>
           </div>
           <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,7 +36,7 @@
           <div class="col-6">
             <div class="card" style="min-height:500px;">
               <div class="card-header">
-                <h5 class="card-title">Betting Cart             <p id="btcValueOld" style="float:right;"></p></h5>
+                <h5 class="card-title">Betting Cart             <p id="btcValue" style="float:right;display:none;"></p></h5>
 
               
               </div>
@@ -44,8 +53,9 @@
               <select class="form-control minute_value" >
              	 <option>1</option>
              	 <option>2</option>
-             	 <option>3</option>
              	 <option>4</option>
+             	 <option>5</option>
+             	 <option>10</option>
               </select>
               </div>
               </div>
@@ -82,18 +92,23 @@
 
             <!-- /.card -->
           </div>
-              <div class="col-6">
-            <p id="btcValue" style="display:none;"></p>
-            <iframe src="https://bitlive.co.kr/?m=game&m2=binance&m3=i
-    " width="550" height="410" scrolling="no" frameborder="0"></iframe>
+          <div class="col-6">
+            <div style="background:#000;padding:2%"><img src="{{asset('image/renew_binance_logo.png')}}"></div>
 
+            <div style="background:#fff;color:#000;text-align:center;=">
+            <p style="margin-bottom: 2px; height: 52px; font-family: 'Lato'; font-size: 44px; font-weight: 800; text-align: center; color:#000;" id="btcValueOld"></p>
+            </p>
+            <div style="width:100%;max-height:200px;overflow:hidden;position:relative;top:20%">
+            <iframe src="https://bitlive.co.kr/?m=game&m2=binance&m3=i
+            " width="550" height="410" scrolling="no" frameborder="0" style="position:relative;top:-203px"></iframe>
             </div>
+          </div>
         </div>
         </div>
         </section>
         </div>
-        <script>
- let oldValue;
+<script>
+    let oldValue;
     let socket = new WebSocket("ws://193.108.118.125:3003")
     socket.onopen = function (evt) {
         socket.send(JSON.stringify({ 'origin': window.location.hostname, 'source': 'binance' }))
@@ -125,7 +140,7 @@
 
     var timer = duration, minutes, seconds;
     if($('.betAmount').eq(display).val() != ''){
-    	$('.oldValue').eq(display).text($('#btcValueOld').text());
+    	$('.oldValue').eq(display).text($('#btcValue').text());
 
 	    var countDown = setInterval(function startCount() {
 	        minutes = parseInt(timer / 60, 10);
@@ -141,7 +156,7 @@
 	        }
 	        if(minutes == 0 && seconds == 0){
 	        	clearInterval(countDown);
-	        	$('.time').eq(display).text($('#btcValueOld').text());
+	        	$('.time').eq(display).text($('#btcValue').text());
 	        	var next = parseInt(display) + 1;
 	        	startTimer(60,next);
 	        }
