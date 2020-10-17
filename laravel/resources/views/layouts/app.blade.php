@@ -92,6 +92,7 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
+      @if(Auth::user()) <div style="width:100%;text-align:center;">{{Auth::user()->wallet}}</div>@endif
 			<div class="collapse navbar-collapse" id="navbarResponsive">
       @if(!Auth::user())
   			<ul class="navbar-nav ml-auto">
@@ -117,9 +118,11 @@
             <a class="nav-link" href="#"  data-toggle="modal" data-target="#wallet"><i class="fa fa-users"></i> Wallet</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('game.bitcoin')}}" ><i class="fa fa-users"></i> Game</a>
+            <a class="nav-link" href="{{route('game.bitcoin')}}" ><i class="fa fa-users"></i> Binance</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('game.bitmex')}}" ><i class="fa fa-users"></i> Bitmex</a>
+          </li>
           
         </ul>
 

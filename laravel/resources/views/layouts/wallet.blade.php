@@ -27,7 +27,7 @@
                    <form method="POST" action="{{ route('user.deposit') }}" class="user" id="user-deposit">
                    @csrf
                   <div class="form-group">
-                    <input type="text" name="deposit_amount" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Amount Deposit">
+                    <input type="text" value="0.00000000" name="deposit_amount" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Amount Deposit">
                   </div>
                       <button type="submit" class="btn btn-primary btn-user btn-block">
                       Send
@@ -38,7 +38,7 @@
                    <form method="POST" action="{{ route('user.withdraw') }}" class="user" id="user-withdraw">
                    @csrf
                   <div class="form-group">
-                    <input type="text" name="withdrawal_amount" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Withdrawal Amount">
+                    <input type="text" value="0.00000000"name="withdrawal_amount" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Withdrawal Amount">
                   </div>
                      <button type="submit" class="btn btn-primary btn-user btn-block">
                       Submit
