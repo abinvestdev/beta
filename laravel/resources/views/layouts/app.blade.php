@@ -16,8 +16,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
     body{background: rgb(25, 44, 56);    font-family: proxima-nova, sans-serif;color: rgba(255, 255, 255, 0.5);  }
@@ -92,7 +91,7 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
-      @if(Auth::user()) <div style="width:100%;text-align:center;">{{Auth::user()->wallet}}</div>@endif
+      @if(Auth::user()) <div style="width:100%;text-align:center;">{{Auth::user()->wallet}} <i class="fa fa-bitcoin" style="color:#f3b92e"></i></div>@endif
 			<div class="collapse navbar-collapse" id="navbarResponsive">
       @if(!Auth::user())
   			<ul class="navbar-nav ml-auto">
@@ -115,13 +114,13 @@
                 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"  data-toggle="modal" data-target="#wallet"><i class="fa fa-users"></i> Wallet</a>
+            <a class="nav-link" href="#"  data-toggle="modal" data-target="#wallet">Wallet</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('game.bitcoin')}}" ><i class="fa fa-users"></i> Binance</a>
+            <a class="nav-link" href="{{route('game.bitcoin')}}" >Binance</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('game.bitmex')}}" ><i class="fa fa-users"></i> Bitmex</a>
+            <a class="nav-link" href="{{route('game.bitmex')}}" > Bitmex</a>
           </li>
           
         </ul>
