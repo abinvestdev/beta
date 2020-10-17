@@ -16,6 +16,7 @@ class UserController extends Controller
         $data['transaction_type'] = 1;
         $data['transaction_date'] = date('Y-m-d H:i:s');
         $data['description'] = '';
+        $data['transaction_status'] = '';
         DB::table('money_transaction')->insert($data);
         $ret['status'] = 'success';
         $ret['mesg']   = 'Successully submitted';
