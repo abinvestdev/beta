@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function(){
 Route::post('user/deposit', 'UserController@deposit')->name('user.deposit');
 Route::post('user/withdraw', 'UserController@withdraw')->name('user.withdraw');
 Route::get('game/bitcoin', 'BettingController@index')->name('game.bitcoin');
+Route::get('game/bitmex', 'BettingController@bitmex')->name('game.bitmex');
 
 
 });
