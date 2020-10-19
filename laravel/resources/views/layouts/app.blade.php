@@ -79,6 +79,9 @@
 .table tr > td{
     color: #8c9186!important;
     }
+    #my-wallet{
+      width:100%;text-align:center;
+    }
 
 
     </style>
@@ -87,11 +90,11 @@
     <div id="app">
       <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">AB INVEST</a>
+			<a class="navbar-brand" href="#"><i class="fa fa-arrow-down" style="color:red;"></i><i class="fa fa-arrow-up" style="color:#4f4fff;"></i> <b style="color:#ddd;">A</b><i class="fa fa-bitcoin" style="color:rgb(243, 185, 46)"></i><i style="color: #b7b7b7;">INVEST</i></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
-      @if(Auth::user()) <div style="width:100%;text-align:center;">{{Auth::user()->wallet}} <i class="fa fa-bitcoin" style="color:#f3b92e"></i></div>@endif
+      @if(Auth::user()) <div id="my-wallet"><b>{{Auth::user()->wallet}}</b> <i class="fa fa-bitcoin" style="color:#f3b92e"></i></div>@endif
 			<div class="collapse navbar-collapse" id="navbarResponsive">
       @if(!Auth::user())
   			<ul class="navbar-nav ml-auto">
@@ -117,7 +120,7 @@
             <a class="nav-link" href="#"  data-toggle="modal" data-target="#wallet">Wallet</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('game.bitcoin')}}" >Binance</a>
+            <a class="nav-link" href="{{route('game.binance')}}" >Binance</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('game.bitmex')}}" > Bitmex</a>

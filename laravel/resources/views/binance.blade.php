@@ -27,7 +27,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3>BITMEX</h3>
+            <h3>BINANCE </h3>
           </div>
           <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -46,6 +46,8 @@
         <div class="row">
           <div class="col-6" >
             <div class="card" style="min-height:500px;">
+            <form action="{{route('user.cart')}}" method="POST" id="addCart">
+            @csrf
               <!-- <div class="card-header">
                 <h5 class="card-title">Betting Cart             <p id="btcValue" style="float:right;display:none;"></p></h5>
               </div> -->
@@ -53,8 +55,8 @@
               <div class="card-body  p-0" style="background:rgb(33, 55, 67)">
               <div class="row">
               <div class="col-12" style="padding-right:1%;">
-                <button class="btn btn-primary btn-sm btn-bet" onClick="startTimer('60',0)">Start</button>
-                <button class="btn btn-danger btn-sm btn-bet">Stop</button>
+                <button type="submit" class="btn btn-primary btn-sm btn-bet" onClick="startTimer('60',0)">Start</button>
+                <button type="button" class="btn btn-danger btn-sm btn-bet">Stop</button>
                 </div>
                 </div>
               <div class="row">
@@ -87,10 +89,10 @@
               	  @for($i=1;$i<13;$i++)
               	 <tr>
               		 <td>{{$i}}</td>
-              		 <td><input type="text" class="form-control betAmount" style="text-align:right;color:#fff;"></td>
-              		 <td style="text-align:center"><input type="radio" name="test_{{$i}}"></td>
-              		 <td style="text-align:center"><input type="radio" name="test_{{$i}}"></td>
-              		 <td><p class="oldValue"></p></td>
+              		 <td><input name="round_bet[]" type="text" class="form-control betAmount" style="text-align:right;color:#fff;"></td>
+              		 <td style="text-align:center"><input type="radio" name="bet_{{$i}}" class="bet_val" value="up"></td>
+              		 <td style="text-align:center"><input type="radio" name="bet_{{$i}}" class="bet_val" value="down"></td>
+              		 <td><p class="oldValue"></p><input type="hidden" name="starting_amount[]" class="start_amnt"></td>
               		 <td><div class="time">00:00</div></td>
               	 </tr>
               	 @endfor
@@ -100,20 +102,21 @@
               </div>
                
               </div>
-              
+              </form>
             </div>
 
 
             <!-- /.card -->
           </div>
           <div class="col-6">
-            <div style="background:#000;padding:2%"><img src="{{asset('image/bitmex-logo.png')}}" style="width:30%"></div>
+            <div style="background:#000;padding:2%"><img src="{{asset('image/renew_binance_logo.png')}}"></div>
 
             <div style="background:#fff;color:#000;text-align:center;=">
             <p style="margin-bottom: 2px; height: 52px; font-family: 'Lato'; font-size: 44px; font-weight: 800; text-align: center; color:#000;" id="btcValue"></p>
             </p>
-            <div style="width:100%;max-height:368px;overflow:hidden;position:relative;top:20%">
-            <iframe src="https://btctools.io/" width="550" height="910" scrolling="no" frameborder="0" style="position:relative;top:-468px"></iframe>
+            <div style="width:100%;max-height:200px;overflow:hidden;position:relative;top:20%">
+            <iframe src="https://bitlive.co.kr/?m=game&m2=binance&m3=i
+            " width="550" height="410" scrolling="no" frameborder="0" style="position:relative;top:-203px"></iframe>
             </div>
           </div>
         </div>
@@ -124,7 +127,7 @@
     let oldValue;
     let socket = new WebSocket("ws://193.108.118.125:3003")
     socket.onopen = function (evt) {
-        socket.send(JSON.stringify({ 'origin': window.location.hostname, 'source': 'bitmex' }))
+        socket.send(JSON.stringify({ 'origin': window.location.hostname, 'source': 'binance' }))
     }
 
     socket.onmessage = function (evt) {
@@ -152,9 +155,9 @@
     var duration = parseInt(duration) * $('.minute_value').val();
     var timer = duration, minutes, seconds;
     var currentBalance = $('#my-wallet').find('b').text();
-    alert(currentBalance);
-    if($('.betAmount').eq(display).val() != ''){
+    if($('.betAmount').eq(display).val() != '' && $('.betAmount').eq(display).val() != 0){
     	$('.oldValue').eq(display).text($('#btcValue').text());
+    	$('.start_amnt').eq(display).val($('#btcValue').text());
 
 	    var countDown = setInterval(function startCount() {
 	        minutes = parseInt(timer / 60, 10);
@@ -180,9 +183,6 @@
 	    	alert("please place a bet");
 	    }
 }
-function addCart(){
-
-}
 $(document).ready(function (e) {
  $(".betAmount").on('keyup', (function (e) {
    let index = $(this).index(".betAmount");
@@ -205,6 +205,38 @@ $(document).ready(function (e) {
 
         }
       }
+ }));
+});
+$(document).ready(function (e) {
+ $("#addCart").on('submit', (function (e) {
+    e.preventDefault();
+
+checkData  = new FormData(this);
+thisAction = $(this).attr("action");
+
+ $.ajax({
+   
+    url: thisAction,
+    type: "POST",
+    data: new FormData(this),
+    contentType: false,
+    cache: false,
+    processData: false,
+    beforeSend: function () {
+
+    },
+
+    success: function (data) {
+      
+      obj = JSON.parse(data);
+    
+
+    },
+    error: function (e) {
+
+    }
+  });
+
  }));
 });
 // jQuery(function ($) {
