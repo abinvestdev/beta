@@ -9,7 +9,12 @@ use Auth;
 class UserController extends Controller
 {
     
-       public function deposit(Request $request){
+    public function user_info(){
+
+        $userInfo = DB::table('users')->where('id',$Auth::user()->id)->first();
+        return $userInfo;
+    }
+        public function deposit(Request $request){
 
         $data['user_id'] = Auth::user()->id;
         $data['amount'] = $request->input('deposit_amount');
