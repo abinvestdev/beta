@@ -39,7 +39,6 @@ class UserController extends Controller
         $ret['mesg']   = 'Successully submitted';
         return json_encode($ret);
 
-
        }
        public function register(Request $request){
 
