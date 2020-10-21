@@ -190,21 +190,54 @@ $(document).ready(function (e) {
       checkBal = parseFloat(myBalance) - parseFloat($(this).val());
       if(checkBal <= 0){
         alert("no balance");
+        $('.betAmount').eq(i).val(myBalance);
       }else{
         // $('#my-wallet').find('b').text(checkBal);
       }
       let betamnt = parseFloat($(this).val());
       for(i=index+1;i < $('.betAmount').length;i++){
           betamnt = betamnt * 2;
-          myBalance = myBalance - betamnt;
+          myBalance = parseFloat(myBalance) - parseFloat(betamnt);
           if(myBalance >= 0){
 
-          $('.betAmount').eq(i).val(betamnt);
+          $('.betAmount').eq(i).val(betamnt.toFixed(8));
         }else{
-          $('.betAmount').eq(i).val(0);
+          $('.betAmount').eq(i).val(0.00000000);
 
         }
       }
+ }));
+});
+$(document).ready(function (e) {
+ $("#addCart").on('submit', (function (e) {
+    e.preventDefault();
+
+checkData  = new FormData(this);
+thisAction = $(this).attr("action");
+
+ $.ajax({
+   
+    url: thisAction,
+    type: "POST",
+    data: new FormData(this),
+    contentType: false,
+    cache: false,
+    processData: false,
+    beforeSend: function () {
+
+    },
+
+    success: function (data) {
+      
+      obj = JSON.parse(data);
+    
+
+    },
+    error: function (e) {
+
+    }
+  });
+
  }));
 });
 // jQuery(function ($) {
