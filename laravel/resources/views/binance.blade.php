@@ -134,7 +134,7 @@
         let obj = JSON.parse(evt.data);
         let classTxt = obj.indicator == '-' ? 'minus' : 'add';
         document.getElementById('btcValue').innerHTML = `$${obj.value}`
-        document.getElementById('btcValueOld').innerHTML = `$${oldValue}`
+        // document.getElementById('btcValueOld').innerHTML = `$${obj.oldValue}`
         oldValue = obj.value;
         document.getElementById('btcValue').classList.remove((classTxt == 'add' ? 'minus' : 'add'))
         document.getElementById('btcValue').classList.add(classTxt)
