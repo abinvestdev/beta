@@ -90,7 +90,7 @@
               	 <tr>
               		 <td>{{$i}}</td>
               		 <td><input name="round_bet[]" type="text" class="form-control betAmount" style="text-align:right;color:#fff;"></td>
-              		 <td style="text-align:center"><input type="radio" name="bet_{{$i}}" class="bet_val" value="up"></td>
+              		 <td style="text-align:center"><input type="radio" name="bet_{{$i}}" class="bet_val" value="up" checked></td>
               		 <td style="text-align:center"><input type="radio" name="bet_{{$i}}" class="bet_val" value="down"></td>
               		 <td><p class="oldValue"></p><input type="hidden" name="starting_amount[]" class="start_amnt"></td>
               		 <td><div class="time">00:00</div></td>
