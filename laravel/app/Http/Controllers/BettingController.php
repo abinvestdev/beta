@@ -37,7 +37,8 @@ class BettingController extends Controller
 
                 $post['starting_amount'] = $data['starting_amount'][$i];
                 $post['round_bet']       = $data['round_bet'][$i];
-        
+                $i2 = $i + 1;
+                $post['bet_val']       = $data['bet_'.$i2];
                 $post['rounds']        = $rounds;
                 $post['round_results'] = 0;
                 $post['ending_amount'] = 0;
